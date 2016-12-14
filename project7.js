@@ -11,7 +11,7 @@ function transformPoint(event) {
 }
 
 // Step 2: drawSquare and drawCircle functions
-function drawSquare(x, y, size, color) {
+function drawSquare(canvas,color,size,x,y) {
   var square = document.createElementNS(namespace,"rect");
   var canvas1=canvas;
   square.setAttribute("x",x);
@@ -21,7 +21,7 @@ function drawSquare(x, y, size, color) {
   square.setAttribute("fill", color);
   canvas.appendChild(square);
 }
-function drawCircle(canvas, x , y, size,  color){
+function drawCircle(canvas,color,size,x,y){
   var circle = document.createElementNS(namespace,"circle");
   var canvas1=canvas;
   circle.setAttribute("cx",x);
@@ -32,17 +32,32 @@ function drawCircle(canvas, x , y, size,  color){
 }
 // Step 3: Event listeners
 document.addEventListener("mousedown", function(e) {
-   var pt = transformPoint(e, screen)
-drawCircle(screen,pt.x,pt.y,15,"red");
 draw=true;
+  var colorSelect = (document.getElementById("colorSelect").value)
+    var shapeSelect = (document.getElementById("shapeSelect").value)
+        var sizeSelect = (document.getElementById("sizeSelect").value)
+
+   var pt = transformPoint(e, screen)
+if(draw==true){
+  if(shapeSelect == "circle"){
+    drawCircle(screen,colorSelect,sizeSelect,pt.x,pt.y);
+  }else if(shapeSelect == "square"){
+    drawSquare(screen,colorSelect,sizeSelect,pt.x,pt.y);
+      }
+}
 })
 document.addEventListener("mousemove", function(e) {
-   var pt = transformPoint(e, screen)
-   if(draw==true){
-drawCircle(screen,pt.x,pt.y,15,"red");
-}
-if(draw==false){
+  var colorSelect = (document.getElementById("colorSelect").value)
+    var shapeSelect = (document.getElementById("shapeSelect").value)
+        var sizeSelect = (document.getElementById("sizeSelect").value)
 
+   var pt = transformPoint(e, screen)
+if(draw==true){
+  if(shapeSelect == "circle"){
+    drawCircle(screen,colorSelect,sizeSelect,pt.x,pt.y);
+  }else if(shapeSelect == "square"){
+    drawSquare(screen,colorSelect,sizeSelect,pt.x,pt.y);
+      }
 }
 })
 document.addEventListener("mouseup", function(e) {
